@@ -18,7 +18,7 @@ public class UserEntity {
     private String address;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_favorite_store", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "user_favorite_place", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "user_place")
     private List<String> userPlace = new ArrayList<>();
 

@@ -4,6 +4,7 @@ import com.my.modong_prac.dto.RequestDto;
 import com.my.modong_prac.dto.ResponseDto;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,14 @@ public class UserController {
     }
 
     @PostMapping
+    @Operation(summary = "유저 생성", description = "json형식의 requsestBody를 통한 유저 생성")
     public ResponseEntity<ResponseDto> createUser(@RequestBody @Valid RequestDto requestDto) {
         UserEntity userEntity = userService.createUser(requestDto);
         return ResponseEntity.ok(new ResponseDto(userEntity));
     }
 
     @GetMapping
+    @Operation(summary = "유저 전체 조회", description = "json 데이터 리스트 return")
     public List<ResponseDto> getAllUsers() {
         return userService.getAllUsers()
                 .stream()
@@ -37,6 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "해당 유저 조회", description = "json 데이터 return")
     public ResponseEntity<ResponseDto> getUser(@PathVariable String id) {
         return userService.getUserById(id)
                 .map(ResponseDto::new)
@@ -45,6 +49,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "해당 유저 수정", description = "해당 id 지정 후 데이터 수정")
     public ResponseEntity<ResponseDto> updateUser(@PathVariable String id, @RequestBody @Valid RequestDto requestDto) {
         try{
             UserEntity userEntity = userService.updateUser(id, requestDto);
@@ -55,6 +60,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "해당 유저 삭제", description = "해당 id 지정 후 데이터 삭제")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
