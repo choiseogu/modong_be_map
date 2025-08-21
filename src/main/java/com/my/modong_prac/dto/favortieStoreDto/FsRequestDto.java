@@ -5,6 +5,10 @@ import lombok.Data;
 
 @Data
 public class FsRequestDto {
+
+    @Schema(description = "user id", example = "johndoe123")
+    private String userId;
+
     @Schema(description = "store name", example = "토리쿠")
     private String storeName;
 

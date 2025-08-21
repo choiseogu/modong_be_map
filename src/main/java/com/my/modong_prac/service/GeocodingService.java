@@ -1,17 +1,13 @@
-package com.my.modong_prac.service.geocodingService;
+package com.my.modong_prac.service;
 
-import com.my.modong_prac.entity.FavoriteStoreEntity;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
-public class FsServiceImpl implements FsService {
-
+public class GeocodingService {
     @Value("${kakao.api.key}")
     private String kakaoApiKey;
 
@@ -46,9 +42,4 @@ public class FsServiceImpl implements FsService {
                 .retrieve()
                 .bodyToMono(String.class);
     }
-
-//    @Override
-//    public List<FavoriteStoreEntity> getFavoriteStores() {
-//
-//    }
 }

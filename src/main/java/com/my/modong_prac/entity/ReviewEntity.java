@@ -17,7 +17,7 @@ public class ReviewEntity {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
-    private FavoriteStoreEntity storeId;
+    private StoreEntity storeId;
 
     @Column(name = "store_review", length = 1000)
     private String content;

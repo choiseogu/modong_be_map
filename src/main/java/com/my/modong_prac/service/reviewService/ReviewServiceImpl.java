@@ -3,10 +3,10 @@ package com.my.modong_prac.service.reviewService;
 import com.my.modong_prac.dto.ReviewDto.ReviewRequestDto;
 import com.my.modong_prac.dto.ReviewDto.ReviewResponseDto;
 import com.my.modong_prac.entity.ReviewEntity;
-import com.my.modong_prac.entity.FavoriteStoreEntity;
+import com.my.modong_prac.entity.StoreEntity;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.repository.ReviewRepository;
-import com.my.modong_prac.repository.FavoriteStoreRepository;
+import com.my.modong_prac.repository.StoreRepository;
 import com.my.modong_prac.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,19 +18,19 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
-    private final FavoriteStoreRepository favoriteStoreRepository;
+    private final StoreRepository storeRepository;
 
-    public ReviewServiceImpl(ReviewRepository reviewRepository, UserRepository userRepository, FavoriteStoreRepository favoriteStoreRepository) {
+    public ReviewServiceImpl(ReviewRepository reviewRepository, UserRepository userRepository, StoreRepository storeRepository) {
         this.reviewRepository = reviewRepository;
         this.userRepository = userRepository;
-        this.favoriteStoreRepository = favoriteStoreRepository;
+        this.storeRepository = storeRepository;
     }
 
     @Override
     public ReviewResponseDto createReview(ReviewRequestDto reviewRequestDto) {
         UserEntity userId = userRepository.findById(reviewRequestDto.getUserId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        FavoriteStoreEntity storeId = favoriteStoreRepository.findById(reviewRequestDto.getStoreId())
+        StoreEntity storeId = storeRepository.findById(reviewRequestDto.getStoreId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "store not found"));
 
         boolean reviewExists = reviewRepository.existsByUserIdAndStoreId(userId, storeId);
@@ -64,14 +64,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<ReviewEntity> getReviewByStoreId(String storeId) {
-        FavoriteStoreEntity store = favoriteStoreRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
+        StoreEntity store = storeRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
         return reviewRepository.findByStoreId(store);
     }
 
     @Override
     public void deleteReviewByUserIdStoreId(String userId, String storeId) {
         UserEntity user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        FavoriteStoreEntity store = favoriteStoreRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
+        StoreEntity store = storeRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
 
         ReviewEntity review = reviewRepository.findByUserIdAndStoreId(user,store)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "사용자의 매장에 해당하는 리뷰가 없습니다"));
@@ -82,7 +82,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public ReviewResponseDto updateReview(String userId, String storeId, ReviewRequestDto reviewRequestDto) {
         UserEntity user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        FavoriteStoreEntity store = favoriteStoreRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
+        StoreEntity store = storeRepository.findById(storeId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
 
         if (!(reviewRepository.existsByUserIdAndStoreId(user, store))){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "사용자id와 매장id 필요");

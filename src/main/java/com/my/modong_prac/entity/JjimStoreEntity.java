@@ -17,5 +17,5 @@ public class JjimStoreEntity {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
-    private FavoriteStoreEntity storeId;
+    private StoreEntity storeId;
 }
