@@ -17,8 +17,14 @@ repositories {
     mavenCentral()
 }
 
+repositories {
+    mavenCentral()
+    google()
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-web-services")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -38,6 +44,13 @@ dependencies {
 
     //classGraph 관련 오류 해결 버전 업데이트
     implementation ("io.github.classgraph:classgraph:4.8.180")
+
+    testImplementation("io.projectreactor:reactor-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    //ai 관련 라이브러리
+    implementation(platform("dev.langchain4j:langchain4j-bom:1.3.0"))
+    implementation("dev.langchain4j:langchain4j-google-ai-gemini:1.3.0")
 }
 
 tasks.withType<Test> {

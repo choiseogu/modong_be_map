@@ -1,6 +1,6 @@
-package com.my.modong_prac.service;
+package com.my.modong_prac.service.userService;
 
-import com.my.modong_prac.dto.RequestDto;
+import com.my.modong_prac.dto.UserDto.RequestDto;
 import com.my.modong_prac.entity.UserEntity;
 
 import java.util.List;

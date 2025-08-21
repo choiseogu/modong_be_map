@@ -1,6 +1,6 @@
-package com.my.modong_prac.service;
+package com.my.modong_prac.service.userService;
 
-import com.my.modong_prac.dto.RequestDto;
+import com.my.modong_prac.dto.UserDto.RequestDto;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,8 +29,9 @@ public class UserServiceImpl implements UserService {
 
         userEntity.setId(requestDto.getId());
         userEntity.setAddress(requestDto.getAddress());
-        userEntity.setUserPlace(requestDto.getUserPlace().lines().toList());
+//        userEntity.setUserPlace(requestDto.getUserPlace().lines().toList());
         userEntity.setUserMood(requestDto.getUserMood().lines().toList());
+        userEntity.setUserStamp(userEntity.getUserStamp());
 
         return userRepository.save(userEntity);
     }
@@ -46,12 +46,12 @@ public class UserServiceImpl implements UserService {
                 .map(userEntity -> {
                     userEntity.setId(requestDto.getId());
                     userEntity.setAddress(requestDto.getAddress());
-                    if (requestDto.getUserPlace() != null) {
-                        List<String> updatePlace = new ArrayList<>(
-                                requestDto.getUserPlace().lines().toList()
-                        );
-                        userEntity.setUserPlace(updatePlace);
-                    }
+//                    if (requestDto.getUserPlace() != null) {
+//                        List<String> updatePlace = new ArrayList<>(
+//                                requestDto.getUserPlace().lines().toList()
+//                        );
+//                        userEntity.setUserPlace(updatePlace);
+//                    }
                     if (requestDto.getUserMood() != null) {
                         List<String> updateMood = new ArrayList<>(
                                 requestDto.getUserMood().lines().toList()

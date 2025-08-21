@@ -1,9 +1,9 @@
 package com.my.modong_prac.controller;
 
-import com.my.modong_prac.dto.RequestDto;
-import com.my.modong_prac.dto.ResponseDto;
+import com.my.modong_prac.dto.UserDto.RequestDto;
+import com.my.modong_prac.dto.UserDto.ResponseDto;
 import com.my.modong_prac.entity.UserEntity;
-import com.my.modong_prac.service.UserService;
+import com.my.modong_prac.service.userService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

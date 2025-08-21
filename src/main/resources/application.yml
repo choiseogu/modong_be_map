@@ -5,7 +5,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/mydb
     username: root
-    password: 326030
+    password: 1234
 
   mvc:
     view:
@@ -19,8 +19,15 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
 
+kakao:
+  api:
+    key: ab50dff36e8d6211a657f24a1e12a3c1
+
+#메세지 형태로 오류내용 response에 담아 전달
 server:
   port: 8080
+  error:
+    include-message: always
 
 springdoc:
   swagger-ui:
@@ -48,3 +55,10 @@ springdoc:
   #?? ?? endpoint? ?? controller? swagger-ui? ????.
   paths-to-match:
     - /api/**
+
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
