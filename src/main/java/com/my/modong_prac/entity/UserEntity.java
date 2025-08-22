@@ -17,10 +17,6 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_favorite_place", joinColumns = @JoinColumn(name = "id"))
-//    @Column(name = "user_place")
-//    private List<String> userPlace = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_favorite_mood", joinColumns = @JoinColumn(name = "id"))
@@ -33,10 +29,9 @@ public class UserEntity {
 
     public UserEntity() {}
 
-    public UserEntity(String id, String address, List<String> userPlace, List<String> userMood) {
+    public UserEntity(String id, String address, List<String> userMood) {
         this.id = id;
         this.address = address;
-        //this.userPlace = userPlace;
         this.userMood = userMood;
     }
 }

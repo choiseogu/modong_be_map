@@ -31,14 +31,12 @@ public class GeocodingService {
                 .bodyToMono(String.class);
     }
 
-    // GeocodingService.java
     public Mono<String> getCoordinatesFromKeyword(String keyword) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/v2/local/search/keyword.json")
                         .queryParam("query", keyword)
                         .build())
-                .header("Authorization", "KakaoAK " + kakaoApiKey) // <-- 다시 추가
                 .retrieve()
                 .bodyToMono(String.class);
     }

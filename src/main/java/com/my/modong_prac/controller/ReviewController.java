@@ -1,7 +1,7 @@
 package com.my.modong_prac.controller;
 
-import com.my.modong_prac.dto.ReviewDto.ReviewRequestDto;
-import com.my.modong_prac.dto.ReviewDto.ReviewResponseDto;
+import com.my.modong_prac.dto.reviewDto.ReviewRequestDto;
+import com.my.modong_prac.dto.reviewDto.ReviewResponseDto;
 import com.my.modong_prac.service.reviewService.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

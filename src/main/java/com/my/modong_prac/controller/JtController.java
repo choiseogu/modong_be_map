@@ -1,7 +1,7 @@
 package com.my.modong_prac.controller;
 
-import com.my.modong_prac.dto.JjimTitleDto.JtRequestDto;
-import com.my.modong_prac.dto.JjimTitleDto.JtResponseDto;
+import com.my.modong_prac.dto.jjimTitleDto.JtRequestDto;
+import com.my.modong_prac.dto.jjimTitleDto.JtResponseDto;
 import com.my.modong_prac.service.jtService.JtService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.JjimTitleDto;
+package com.my.modong_prac.dto.jjimTitleDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

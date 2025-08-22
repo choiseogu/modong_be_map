@@ -7,11 +7,6 @@ import lombok.Data;
 @Table(name = "jn_store")
 @Data
 public class StoreEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "store_id")
-//    private Long storeId;
-//
     @Id
     @Column(name = "store_name")
     private String storeName;

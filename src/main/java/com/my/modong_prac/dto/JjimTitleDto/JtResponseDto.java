@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.JjimTitleDto;
+package com.my.modong_prac.dto.jjimTitleDto;
 
 import com.my.modong_prac.entity.JjimTitleEntity;
 import lombok.Data;

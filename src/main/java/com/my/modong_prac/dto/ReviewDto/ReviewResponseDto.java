@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.ReviewDto;
+package com.my.modong_prac.dto.reviewDto;
 
 import com.my.modong_prac.entity.ReviewEntity;
 import lombok.Data;

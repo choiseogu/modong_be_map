@@ -2,8 +2,9 @@ package com.my.modong_prac.service.fsService;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.modong_prac.dto.favortieStoreDto.FsRequestDto;
+import com.my.modong_prac.dto.favoriteStoreDto.FsRequestDto;
 import com.my.modong_prac.entity.FavoriteStoreEntity;
+import com.my.modong_prac.entity.FavoriteStoreId;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.repository.FsRepository;
 import com.my.modong_prac.repository.UserRepository;
@@ -31,7 +32,7 @@ public class FsServiceImpl implements FsService {
     }
 
     @Override
-    public List<FavoriteStoreEntity> getFavoriteStores() {
+    public List<FavoriteStoreEntity> getAllFs() {
         List<FavoriteStoreEntity> fs = fsRepository.findAll();
 
         if (fs.isEmpty()) {
@@ -42,15 +43,20 @@ public class FsServiceImpl implements FsService {
     }
 
     @Override
-    public List<FavoriteStoreEntity> getFavoriteStoresByUserId(String userId) {
+    public List<FavoriteStoreEntity> getUserFs(String userId) {
         UserEntity user = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        FavoriteStoreEntity fs = fsRepository.findByUserId(user)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 userId에 등록된 가게 없음"));
-        return Collections.singletonList(fs);
+        return fsRepository.findByUserId(user);
     }
 
     @Override
     public Mono<FavoriteStoreEntity> createFs(FsRequestDto fsRequestDto) {
+        // 복합키 중복 체크를 위해 임시 detail 설정
+        String tempDetail = fsRequestDto.getStoreDetail() != null ? fsRequestDto.getStoreDetail() : "";
+        
+        // 동일한 storeName + detail 조합이 이미 존재하는지 체크
+        if (fsRepository.findByStoreNameAndDetail(fsRequestDto.getStoreName(), tempDetail).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "동일한 가게명과 상세정보가 이미 존재합니다");
+        }
 
         Mono<String> geocodingResponse;
 
@@ -90,7 +96,7 @@ public class FsServiceImpl implements FsService {
                     fsEntity.setDetail(address);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "지오코딩 응답 파싱 실패", e);
             }
             return Mono.just(fsRepository.save(fsEntity));
         });
@@ -98,6 +104,9 @@ public class FsServiceImpl implements FsService {
 
     private FavoriteStoreEntity toEntity(FsRequestDto fsRequestDto) {
         FavoriteStoreEntity entity = new FavoriteStoreEntity();
+        UserEntity user = userRepository.findById(fsRequestDto.getUserId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        entity.setUserId(user);
         entity.setStoreName(fsRequestDto.getStoreName());
         entity.setDetail(fsRequestDto.getStoreDetail());
         return entity;

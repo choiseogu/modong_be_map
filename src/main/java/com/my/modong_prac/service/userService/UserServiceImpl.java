@@ -1,6 +1,6 @@
 package com.my.modong_prac.service.userService;
 
-import com.my.modong_prac.dto.UserDto.RequestDto;
+import com.my.modong_prac.dto.userDto.UserRequestDto;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity createUser(RequestDto requestDto) {
+    public UserEntity createUser(UserRequestDto requestDto) {
         if (requestDto.getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id 입력은 필수");
         }
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity updateUser(String id, RequestDto requestDto) {
+    public UserEntity updateUser(String id, UserRequestDto requestDto) {
         if (requestDto.getId() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id 입력은 필수");
         }

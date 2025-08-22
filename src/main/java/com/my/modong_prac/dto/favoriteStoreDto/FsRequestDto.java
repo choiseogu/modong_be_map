@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.favortieStoreDto;
+package com.my.modong_prac.dto.favoriteStoreDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

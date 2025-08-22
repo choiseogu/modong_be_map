@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.ReviewDto;
+package com.my.modong_prac.dto.reviewDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

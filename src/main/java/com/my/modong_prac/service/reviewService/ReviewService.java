@@ -1,7 +1,7 @@
 package com.my.modong_prac.service.reviewService;
 
-import com.my.modong_prac.dto.ReviewDto.ReviewRequestDto;
-import com.my.modong_prac.dto.ReviewDto.ReviewResponseDto;
+import com.my.modong_prac.dto.reviewDto.ReviewRequestDto;
+import com.my.modong_prac.dto.reviewDto.ReviewResponseDto;
 import com.my.modong_prac.entity.ReviewEntity;
 
 import java.util.List;

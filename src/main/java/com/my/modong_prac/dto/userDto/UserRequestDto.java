@@ -1,10 +1,10 @@
-package com.my.modong_prac.dto.UserDto;
+package com.my.modong_prac.dto.userDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-public class RequestDto {
+public class UserRequestDto {
 
     @Schema(description = "사용자 id", example = "johndoe123")
     private String id;

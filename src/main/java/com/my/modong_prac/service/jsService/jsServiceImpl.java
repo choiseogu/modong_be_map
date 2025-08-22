@@ -1,7 +1,7 @@
 package com.my.modong_prac.service.jsService;
 
-import com.my.modong_prac.dto.JjimStoreDto.JsRequestDto;
-import com.my.modong_prac.dto.JjimStoreDto.JsResponseDto;
+import com.my.modong_prac.dto.jjimStoreDto.JsRequestDto;
+import com.my.modong_prac.dto.jjimStoreDto.JsResponseDto;
 import com.my.modong_prac.entity.JjimStoreEntity;
 import com.my.modong_prac.entity.JjimTitleEntity;
 import com.my.modong_prac.entity.FavoriteStoreEntity;

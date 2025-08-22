@@ -1,4 +1,4 @@
-package com.my.modong_prac.dto.JjimStoreDto;
+package com.my.modong_prac.dto.jjimStoreDto;
 
 import com.my.modong_prac.entity.JjimStoreEntity;
 import com.my.modong_prac.entity.JjimStoreId;

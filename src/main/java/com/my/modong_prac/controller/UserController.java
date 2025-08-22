@@ -1,7 +1,7 @@
 package com.my.modong_prac.controller;
 
-import com.my.modong_prac.dto.UserDto.RequestDto;
-import com.my.modong_prac.dto.UserDto.ResponseDto;
+import com.my.modong_prac.dto.userDto.UserRequestDto;
+import com.my.modong_prac.dto.userDto.UserResponseDto;
 import com.my.modong_prac.entity.UserEntity;
 import com.my.modong_prac.service.userService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,35 +25,36 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "유저 생성", description = "json형식의 requsestBody를 통한 유저 생성")
-    public ResponseEntity<ResponseDto> createUser(@RequestBody @Valid RequestDto requestDto) {
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserRequestDto requestDto) {
         UserEntity userEntity = userService.createUser(requestDto);
-        return ResponseEntity.ok(new ResponseDto(userEntity));
+        return ResponseEntity.ok(new UserResponseDto(userEntity));
     }
 
     @GetMapping
     @Operation(summary = "유저 전체 조회", description = "json 데이터 리스트 return")
-    public List<ResponseDto> getAllUsers() {
-        return userService.getAllUsers()
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        List<UserResponseDto> users = userService.getAllUsers()
                 .stream()
-                .map(ResponseDto::new)
+                .map(UserResponseDto::new)
                 .collect(Collectors.toList());
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "해당 유저 조회", description = "json 데이터 return")
-    public ResponseEntity<ResponseDto> getUser(@PathVariable String id) {
+    public ResponseEntity<UserResponseDto> getUser(@PathVariable String id) {
         return userService.getUserById(id)
-                .map(ResponseDto::new)
+                .map(UserResponseDto::new)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "해당 유저 수정", description = "해당 id 지정 후 데이터 수정")
-    public ResponseEntity<ResponseDto> updateUser(@PathVariable String id, @RequestBody @Valid RequestDto requestDto) {
+    public ResponseEntity<UserResponseDto> updateUser(@PathVariable String id, @RequestBody @Valid UserRequestDto requestDto) {
         try{
             UserEntity userEntity = userService.updateUser(id, requestDto);
-            return ResponseEntity.ok(new ResponseDto(userEntity));
+            return ResponseEntity.ok(new UserResponseDto(userEntity));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
