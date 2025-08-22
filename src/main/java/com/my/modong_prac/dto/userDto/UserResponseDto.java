@@ -9,14 +9,12 @@ import java.util.List;
 public class UserResponseDto {
     private String id;
     private String address;
-//    private List<String> userPlace;
     private List<String> userMood;
     private Integer user_stamp;
 
     public UserResponseDto(UserEntity userEntity) {
         this.id = userEntity.getId();
         this.address = userEntity.getAddress();
-//        this.userPlace = userEntity.getUserPlace();
         this.userMood = userEntity.getUserMood();
         this.user_stamp = userEntity.getUserStamp();
     }
