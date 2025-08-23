@@ -34,6 +34,6 @@ public class StoreRequestDto {
     @Schema(description = "매장 설명", example = "정성스럽게 만드는 전통 한식 맛집입니다.")
     private String description;
     
-    @Schema(description = "매장 분위기", example = "아늑한\n조용한\n가족적인")a 서
+    @Schema(description = "매장 분위기", example = "아늑한\n조용한\n가족적인")
     private String storeMood;
 }

@@ -5,7 +5,11 @@
       "Bash(./gradlew.bat clean:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(sudo yum search:*)"
+      "Bash(sudo yum search:*)",
+      "Bash(.\\gradlew build:*)",
+      "Bash(.\\gradlew.bat build:*)",
+      "Bash(.\\gradlew.bat build:*)",
+      "Bash(.\\gradlew.bat build:*)"
     ],
     "deny": [],
     "ask": []
