@@ -22,7 +22,9 @@ spring:
           characterEncoding: utf8mb4
           useUnicode: true
         globally_quoted_identifiers: true
+        format_sql: true
     database-platform: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
 
 kakao:
   api:
