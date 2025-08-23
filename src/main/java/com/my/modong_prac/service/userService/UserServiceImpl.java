@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
         userEntity.setId(requestDto.getId());
         userEntity.setAddress(requestDto.getAddress());
 //        userEntity.setUserPlace(requestDto.getUserPlace().lines().toList());
-        userEntity.setUserMood(requestDto.getUserMood().lines().toList());
-        userEntity.setUserStamp(userEntity.getUserStamp());
+        userEntity.setUserMood(requestDto.getUserMood());
+        userEntity.setUserStamp(0);
 
         return userRepository.save(userEntity);
     }
@@ -53,10 +53,7 @@ public class UserServiceImpl implements UserService {
 //                        userEntity.setUserPlace(updatePlace);
 //                    }
                     if (requestDto.getUserMood() != null) {
-                        List<String> updateMood = new ArrayList<>(
-                                requestDto.getUserMood().lines().toList()
-                        );
-                        userEntity.setUserMood(updateMood);
+                        userEntity.setUserMood(requestDto.getUserMood());
                     }
                     return userRepository.save(userEntity);
                 })

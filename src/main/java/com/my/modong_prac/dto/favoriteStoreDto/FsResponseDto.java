@@ -10,14 +10,10 @@ public class FsResponseDto {
     private String storeName;  // 복합키 1
     private String detail;     // 복합키 2
     private String userId;
-    private double posX;
-    private double posY;
 
     public FsResponseDto(FavoriteStoreEntity favoriteStoreEntity) {
         this.storeName = favoriteStoreEntity.getStoreName();
         this.userId = favoriteStoreEntity.getUserId().getId();
         this.detail = favoriteStoreEntity.getDetail();
-        this.posX = favoriteStoreEntity.getPosX();
-        this.posY = favoriteStoreEntity.getPosY();
     }
 }

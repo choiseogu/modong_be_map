@@ -7,11 +7,13 @@ import lombok.Data;
 public class ReviewResponseDto {
     private String userId;
     private String storeId;
+    private String storeName;
     private String review;
 
     public ReviewResponseDto(ReviewEntity reviewEntity) {
         this.userId = reviewEntity.getUserId().getId();
-        this.storeId = reviewEntity.getStoreId().getStoreName();
+        this.storeId = reviewEntity.getStoreId().getStoreId();
+        this.storeName = reviewEntity.getStoreId().getStoreName();
         this.review = reviewEntity.getContent();
     }
 }

@@ -8,15 +8,30 @@ import lombok.Data;
 @Data
 public class StoreEntity {
     @Id
-    @Column(name = "store_name")
+    @Column(name = "store_id")
+    private String storeId;
+    
+    @Column(name = "store_name", nullable = false)
     private String storeName;
 
     @Column(name = "detail")
     private String detail;
-
-    @Column(name = "posX")
-    private double posX;
-
-    @Column(name = "posY")
-    private double posY;
+    
+    @Column(name = "phone")
+    private String phone;
+    
+    @Column(name = "operating_hours")
+    private String operatingHours;
+    
+    @Column(name = "category")
+    private String category;
+    
+    @Column(name = "main_menu")
+    private String mainMenu;
+    
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+    
+    @Column(name = "store_mood")
+    private String storeMood;
 }

@@ -87,12 +87,8 @@ public class FsServiceImpl implements FsService {
 
                 if (documents.size() > 0) {
                     JsonNode firstDocument = documents.get(0);
-                    double longitude = firstDocument.path("x").asDouble();
-                    double latitude = firstDocument.path("y").asDouble();
                     String address = firstDocument.path("address_name").asText();
 
-                    fsEntity.setPosX(longitude);
-                    fsEntity.setPosY(latitude);
                     fsEntity.setDetail(address);
                 }
             } catch (IOException e) {

@@ -20,10 +20,4 @@ public class FavoriteStoreEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity userId;
-
-    @Column(name = "posX")
-    private double posX;
-
-    @Column(name = "posY")
-    private double posY;
 }
