@@ -88,8 +88,24 @@ public class FsServiceImpl implements FsService {
                 if (documents.size() > 0) {
                     JsonNode firstDocument = documents.get(0);
                     String address = firstDocument.path("address_name").asText();
+                    
+                    // 좌표 정보 추출
+                    String xCoordinate = firstDocument.path("x").asText();
+                    String yCoordinate = firstDocument.path("y").asText();
 
                     fsEntity.setDetail(address);
+                    
+                    // posX, posY 설정
+                    if (!xCoordinate.isEmpty() && !yCoordinate.isEmpty()) {
+                        try {
+                            fsEntity.setPosX(Double.parseDouble(xCoordinate));
+                            fsEntity.setPosY(Double.parseDouble(yCoordinate));
+                        } catch (NumberFormatException e) {
+                            // 좌표 파싱 실패 시 null로 설정
+                            fsEntity.setPosX(null);
+                            fsEntity.setPosY(null);
+                        }
+                    }
                 }
             } catch (IOException e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "지오코딩 응답 파싱 실패", e);
@@ -105,6 +121,9 @@ public class FsServiceImpl implements FsService {
         entity.setUserId(user);
         entity.setStoreName(fsRequestDto.getStoreName());
         entity.setDetail(fsRequestDto.getStoreDetail());
+        // geocoding 없이 저장할 경우 좌표는 null로 설정
+        entity.setPosX(null);
+        entity.setPosY(null);
         return entity;
     }
 }

@@ -37,6 +37,16 @@ public class JtController {
         return  ResponseEntity.ok(jtResponseDto);
     }
 
+    @GetMapping("/getAllJt")
+    @Operation(summary = "전체 찜 제목 조회", description = "모든 사용자의 찜 제목을 조회합니다")
+    public ResponseEntity<List<JtResponseDto>> getAllJt() {
+        List<JtResponseDto> allJtEntities = jtService.getAllJt()
+                .stream().map(JtResponseDto::new)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(allJtEntities);
+    }
+
     @GetMapping("/findJt/{jtId}")
     @Operation(summary = "jtId 조회로 사용자가 정의한 찜 제목 조회", description = "json 데이터 리스트 return")
     public ResponseEntity<List<JtResponseDto>> findJt(@PathVariable Integer jtId) {

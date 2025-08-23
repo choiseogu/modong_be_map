@@ -11,5 +11,6 @@ public interface JtService {
     JtResponseDto createJt(JtRequestDto jtRequestDto);
     JtResponseDto updateJt(Integer jtId, JtRequestDto jtRequestDto);
     List<JjimTitleEntity> getJtByUserId(Integer jtId);
+    List<JjimTitleEntity> getAllJt(); // 전체 JT 조회 메서드 추가
     void deleteJt(Integer jtId);
 }

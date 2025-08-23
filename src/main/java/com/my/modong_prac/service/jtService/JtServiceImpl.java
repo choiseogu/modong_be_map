@@ -57,6 +57,17 @@ public class JtServiceImpl implements JtService {
     }
 
     @Override
+    public List<JjimTitleEntity> getAllJt() {
+        List<JjimTitleEntity> allJt = jtRepository.findAll();
+        
+        if (allJt.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 찜 제목이 없습니다.");
+        }
+        
+        return allJt;
+    }
+
+    @Override
     public void deleteJt(Integer jtId) {
         JjimTitleEntity jt = jtRepository.findByJtId(jtId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "jtId not found"));
         jtRepository.delete(jt);
