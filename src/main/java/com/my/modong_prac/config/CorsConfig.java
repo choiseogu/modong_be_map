@@ -19,7 +19,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true)
+                .allowCredentials(false)
                 .maxAge(3600);
     }
 
@@ -36,8 +36,8 @@ public class CorsConfig implements WebMvcConfigurer {
         // 허용할 헤더
         configuration.setAllowedHeaders(Arrays.asList("*"));
         
-        // 자격증명(쿠키 등) 허용
-        configuration.setAllowCredentials(true);
+        // 자격증명(쿠키 등) 허용 - 개발환경에서는 false로 설정
+        configuration.setAllowCredentials(false);
         
         // preflight 요청 캐시 시간
         configuration.setMaxAge(3600L);
