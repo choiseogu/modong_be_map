@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Tag(name = "favoriteStore_info", description = "유저 최애 매장 api")
 @RestController
 @RequestMapping("/api/v5")
+@CrossOrigin(origins = "*")
 public class FavoriteStoreController {
     private final FsRepository fsRepository;
     private final FsService fsService;

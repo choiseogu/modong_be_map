@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Tag(name = "jt_info", description = "찜 제목 api")
 @RestController
 @RequestMapping("/api/v3")
+@CrossOrigin(origins = "*")
 public class JtController {
     private final JtService jtService;
 

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Tag(name = "user_info", description = "회원 api")
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
 

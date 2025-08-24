@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Tag(name = "js_info", description = "찜한 매장 api")
 @RestController
 @RequestMapping("/api/v4")
+@CrossOrigin(origins = "*")
 public class JsController {
 
     private final jsService jsService;

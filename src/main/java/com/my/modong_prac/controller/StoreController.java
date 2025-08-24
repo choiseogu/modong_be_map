@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Tag(name = "store_info", description = "매장 정보 api")
 @RestController
 @RequestMapping("/api/v6")
+@CrossOrigin(origins = "*")
 public class StoreController {
     private final StoreService storeService;
 

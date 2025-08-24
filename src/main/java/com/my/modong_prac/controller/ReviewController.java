@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Tag(name = "review_info", description = "리뷰 api")
 @RestController
 @RequestMapping("/api/v2")
+@CrossOrigin(origins = "*")
 public class ReviewController {
     private final ReviewService reviewService;
 
