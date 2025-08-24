@@ -10,11 +10,11 @@ import lombok.Data;
 public class FavoriteStoreEntity {
 
     @Id
-    @Column(name = "store_name", columnDefinition = "VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "store_name")
     private String storeName;
 
     @Id
-    @Column(name = "detail", columnDefinition = "VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "detail")
     private String detail;
 
     @Column(name = "pos_x")

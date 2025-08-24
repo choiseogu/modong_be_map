@@ -17,6 +17,6 @@ public class JjimTitleEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userId;
 
-    @Column(name = "jjim_title", columnDefinition = "VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "jjim_title")
     private String jjimTitle;
 }

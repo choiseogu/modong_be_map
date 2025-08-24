@@ -19,6 +19,6 @@ public class ReviewEntity {
     @JoinColumn(name = "store_id")
     private StoreEntity storeId;
 
-    @Column(name = "store_review", columnDefinition = "VARCHAR(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "store_review", length = 1000)
     private String content;
 }

@@ -3,11 +3,9 @@ spring:
     name: mdong_prac
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&connectionCollation=utf8mb4_unicode_ci&characterSetResults=utf8mb4&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mariadb://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 1234
-    hikari:
-      connection-init-sql: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
 
   mvc:
     view:
@@ -16,20 +14,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
-        connection:
-          characterEncoding: utf8mb4
-          useUnicode: true
-        globally_quoted_identifiers: true
         format_sql: true
-        hbm2ddl:
-          charset_name: utf8mb4
-        connection.CharSet: utf8mb4
-        connection.characterEncoding: utf8mb4
-        connection.useUnicode: true
+        show_sql: true
     database-platform: org.hibernate.dialect.MariaDBDialect
     show-sql: true
     open-in-view: false

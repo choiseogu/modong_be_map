@@ -14,13 +14,13 @@ public class UserEntity {
     @Id
     private String id;
 
-    @Column(name = "address", columnDefinition = "TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @Column(name = "address", columnDefinition = "TEXT")
     private String address;
 
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_favorite_mood", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "user_mood", columnDefinition = "VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+    @CollectionTable(name = "user_favorite_mood", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "user_mood")
     private List<String> userMood = new ArrayList<>();
 
     @Column(name = "user_stamp", nullable = false)
